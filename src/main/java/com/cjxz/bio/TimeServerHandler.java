@@ -23,17 +23,20 @@ public class TimeServerHandler implements Runnable{
         BufferedReader in = null;
         PrintWriter out = null;
         try{
+            //从socket中获得输入和输出流
             in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             out = new PrintWriter(this.socket.getOutputStream(),true);
             String currentTime = null;
             String body = null;
             while (true){
+                //得到客户端发送到服务端的数据
                 body = in.readLine();
                 if(body == null){
                     break;
                 }
                 System.out.println("接收内容："+body);
                 currentTime = "服务器时间："+new Date(System.currentTimeMillis());
+                //服务端向客户端写入数据
                 out.println(currentTime);
             }
         }catch (Exception e){
