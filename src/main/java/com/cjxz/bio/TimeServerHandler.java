@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: chao.zhu
@@ -36,6 +37,7 @@ public class TimeServerHandler implements Runnable{
                 }
                 System.out.println("接收内容："+body);
                 currentTime = "服务器时间："+new Date(System.currentTimeMillis());
+                TimeUnit.MILLISECONDS.sleep(500);
                 //服务端向客户端写入数据
                 out.println(currentTime);
             }
